@@ -1,0 +1,44 @@
+.red {
+  color: red;
+  text-align: center;
+}
+.arrow {
+  width: 3vw;
+  height: 3vw;
+  border: 1.5vw solid;
+  border-color: rgb(1, 1, 68) transparent transparent rgb(44, 0, 80);
+  transform: rotate(-45deg);
+}
+.arrow:hover {
+  cursor: pointer;
+}
+.background2 {
+  /* display: flex; */
+
+  /* align-items: center; */
+  /* justify-content: center; */
+
+  background-color: #282c34;
+  min-height: 100vh;
+
+  color: white;
+  line-height: 1em;
+  font-size: 2em;
+}
+.box {
+  border: 2px solid;
+  height: 75vh;
+  width: 75vh;
+  margin: auto;
+}
+/* .flex2{
+    display: flex;
+  
+    align-items: center;
+    
+    
+} */
+.playview-container {
+  max-width: 700px;
+  margin: auto;
+}
