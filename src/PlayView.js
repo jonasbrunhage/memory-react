@@ -8,29 +8,43 @@ function PlayView() {
   const handleClick2 = () => {
     history.push("/");
   };
-  const onCardClick = (siffra1) => {
+  const onCardClick = (objekt) => {
     // setCardNumbers([1, 2, 3, 4]);
 
     //
-    if (nummer == null) {
-      setNummer(siffra1);
+    if (kort1 == null) {
+      setKort1(objekt);
+    } else if (objekt.id == kort1.id) {
+      return;
     } else {
-      setNummer2(siffra1);
+      setKort2(objekt);
     }
   };
 
-  const [nummer, setNummer] = useState();
-  const [nummer2, setNummer2] = useState();
+  const [kort1, setKort1] = useState();
+  const [kort2, setKort2] = useState();
 
   useEffect(() => {
-    if (nummer == nummer2) {
-      setCardNumbers(cardNumbers.filter((item) => item !== nummer));
+    if (kort1 == null && kort2 == null) {
+      return;
     }
-    setNummer(null);
-    setNummer2(null);
-  }, [nummer2]);
+    if (kort1.kortnummer == kort2.kortnummer) {
+      setCardNumbers(
+        cardNumbers.filter((item) => item.kortnummer !== kort1.kortnummer)
+      );
+    }
+    setKort1(null);
+    setKort2(null);
+  }, [kort2]);
 
-  const [cardNumbers, setCardNumbers] = useState([1, 2, 3, 1, 2, 3]);
+  const [cardNumbers, setCardNumbers] = useState([
+    { id: "1", kortnummer: "1" },
+    { id: "2", kortnummer: "2" },
+    { id: "3", kortnummer: "3" },
+    { id: "4", kortnummer: "1" },
+    { id: "5", kortnummer: "2" },
+    { id: "6", kortnummer: "3" },
+  ]);
 
   return (
     <div className="background2">
@@ -40,12 +54,12 @@ function PlayView() {
         <Card value={2} handleClick={onCardClick} />
         <Card value={1} handleClick={onCardClick} />
         <Card value={2} handleClick={onCardClick} /> */}
-        <p>{nummer}</p>
+        {/* <p>{nummer}</p> */}
         {cardNumbers.map((värde) => {
           return (
             <Card
-              value2={värde}
-              isFocused={värde == nummer}
+              cardValue={värde}
+              isFocused={värde == kort1}
               handleClick={onCardClick}
             />
           );
