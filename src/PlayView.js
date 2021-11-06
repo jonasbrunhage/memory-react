@@ -9,36 +9,53 @@ function PlayView() {
     history.push("/");
   };
   const onCardClick = (clickedCard) => {
-    if (card1 == null) {
-      setCard1(clickedCard);
-    } else if (clickedCard.id == card1.id) {
+    if (clickedCard.isFocused || clickedCard.isMatched) {
       return;
+    }
+
+    if (clickedCard?.id === card1?.id) {
+      return;
+    }
+
+    if (card1 === null) {
+      setCard1(clickedCard);
     } else {
       setCard2(clickedCard);
     }
   };
 
-  const [card1, setCard1] = useState();
-  const [card2, setCard2] = useState();
+  const [card1, setCard1] = useState(null);
+  const [card2, setCard2] = useState(null);
 
   useEffect(() => {
-    if (card1 == null && card2 == null) {
-      return;
-    }
-    if (card1.number == card2.number) {
-      setCards(cards.filter((card) => card.number !== card1.number));
-    }
-    setCard1(null);
-    setCard2(null);
+    const timeout = setTimeout(() => {
+      if (card1 === null && card2 === null) {
+        return;
+      }
+      if (card1.number === card2.number) {
+        // setCards(cards.filter((card) => card.number !=== card1.number));
+        let updatedCards = cards.map((value) => {
+          if (value === card1 || value === card2) {
+            value.isMatched = true;
+            return value;
+          }
+          return value;
+        });
+        setCards(updatedCards);
+      }
+      setCard1(null);
+      setCard2(null);
+    }, 1000);
+    return () => clearTimeout(timeout);
   }, [card2]);
 
   const [cards, setCards] = useState([
-    { id: 1, number: 1 },
-    { id: 2, number: 2 },
-    { id: 3, number: 3 },
-    { id: 4, number: 1 },
-    { id: 5, number: 2 },
-    { id: 6, number: 3 },
+    { id: 1, number: 1, isMatched: false },
+    { id: 2, number: 2, isMatched: false },
+    { id: 3, number: 3, isMatched: false },
+    { id: 4, number: 1, isMatched: false },
+    { id: 5, number: 2, isMatched: false },
+    { id: 6, number: 3, isMatched: false },
   ]);
 
   return (
@@ -48,8 +65,9 @@ function PlayView() {
         {cards.map((card) => {
           return (
             <Card
+              key={card.id}
               card={card}
-              isFocused={card == card1}
+              isFocused={card === card1 || card === card2}
               handleClick={onCardClick}
             />
           );
