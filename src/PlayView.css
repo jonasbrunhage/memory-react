@@ -47,4 +47,56 @@
   /* column-gap: 10px; */
   /* row-gap: 10px; */
   grid-gap: 10px;
+  position: relative;
+}
+.vinnar-text {
+  position: absolute;
+  grid-column: 1/4;
+  justify-self: center;
+  align-self: center;
+  padding-bottom: 0.1em;
+  /* grid-row: 2/3; */
+  z-index: 2;
+  font-size: 1.5em;
+  font-weight: 700;
+  color: rgb(255, 0, 0);
+
+  background: linear-gradient(45deg, rgb(0, 0, 214), rgb(238, 0, 0) 80%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 100%;
+
+  transform: rotate(-20deg);
+
+  /* animation: skew 3s;
+  animation-iteration-count: initial;
+  transform: skew(20deg);
+  animation-direction: alternate;
+  opacity: 0.7; */
+  animation: zoom 3s infinite;
+
+  animation-direction: alternate;
+}
+
+@keyframes zoom {
+  0% {
+    /* transform: scale(1); */
+    transform: rotate(-10deg) scale(1);
+  }
+  100% {
+    /* transform: scale(1.5); */
+    transform: rotate(-20deg) scale(1.5);
+  }
+}
+
+.info-container {
+  max-width: 700px;
+  margin: auto;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(200px, auto);
+  /* column-gap: 10px; */
+  /* row-gap: 10px; */
+  grid-gap: 10px;
+  margin-top: 20px;
 }

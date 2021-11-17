@@ -8,6 +8,7 @@ function PlayView() {
   const navigateHome = () => {
     history.push("/");
   };
+
   const onCardClick = (clickedCard) => {
     if (clickedCard.isFocused || clickedCard.isMatched) {
       return;
@@ -21,15 +22,22 @@ function PlayView() {
       setCard1(clickedCard);
     } else {
       setCard2(clickedCard);
+      setCardsDisabled(true);
     }
   };
 
   const [card1, setCard1] = useState(null);
   const [card2, setCard2] = useState(null);
+  const [cardsDisabled, setCardsDisabled] = useState(false);
+
+  const reloadPage = () => {
+    history.push("/play");
+  };
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      if (card1 === null && card2 === null) {
+      console.log(card1);
+      if (card1 === null || card2 === null) {
         return;
       }
       if (card1.number === card2.number) {
@@ -45,6 +53,7 @@ function PlayView() {
       }
       setCard1(null);
       setCard2(null);
+      setCardsDisabled(false);
     }, 1000);
     return () => clearTimeout(timeout);
   }, [card2]);
@@ -58,10 +67,55 @@ function PlayView() {
     { id: 6, number: 3, isMatched: false },
   ]);
 
+  const [poäng, setPoäng] = useState(0);
+  useEffect(() => {
+    let points = 0;
+    // const cardsThatareTrue = cards.filter((item) => item.isMatched === true);
+    // alert(cardsThatareTrue.length);
+    for (let item of cards) {
+      if (item.isMatched === true) {
+        points += 1;
+      }
+    }
+    setPoäng(points / 2);
+  }, [cards]);
+  useEffect(() => {
+    const cardsThatareTrue = cards.filter((item) => item.isMatched === true);
+    if (cardsThatareTrue.length === cards.length) {
+      setWinMessage("You have won!!!!!!!");
+    }
+    // for (let item of cards) {
+    //   if (item.isMatched == true) {
+    //     setWinMessage("You have won!!!!!!!");
+    //   }
+    // }
+  }, [cards]);
+
+  const [winMessage, setWinMessage] = useState("");
+  // useEffect(() => {
+  //   // const score = cards.filter((item) => item.isMatched === true);
+  //   // setScore(score);
+  //   for (let kort of cards) {
+  //     if (kort.isMatched === true) {
+  //       setScore = "won";
+  //     }
+  //   }
+  // }, [cards]);
+
+  //check cards with useeffect
+  //somehow deside if we have won
+  //start make alert or console.log when all is matched
+  //loop for see if all is matched maybe
+
+  function refreshPage() {
+    window.location.reload(false);
+  }
+
   return (
     <div className="background2">
       <div className="arrow" onClick={navigateHome}></div>
       <div className="playview-container">
+        {<div className="vinnar-text">{winMessage}</div>}
         {cards.map((card) => {
           return (
             <Card
@@ -69,9 +123,16 @@ function PlayView() {
               card={card}
               isFocused={card === card1 || card === card2}
               handleClick={onCardClick}
+              isDisabled={cardsDisabled}
             />
           );
         })}
+      </div>
+      <div className=" info-container">
+        <div>Points: {poäng}</div>
+        {/* {<div className="vinnar-text">{winMessage}</div>} */}
+        <button onClick={reloadPage}>Restart</button>
+        <button onClick={refreshPage}>Click to reload!</button>
       </div>
     </div>
   );

@@ -1,7 +1,6 @@
 import React from "react";
 import "./HomeView.css";
 import { useHistory } from "react-router-dom";
-import Test from "./Components/Test/Test";
 
 function HomeView() {
   let history = useHistory();
@@ -20,11 +19,9 @@ function HomeView() {
           </button>
         </div>
         <div>
-          <img className="image" src="\memory-cards.png"></img>
+          <img className="image" src="\memory-cards.png" alt="card-pic"></img>
         </div>
       </div>
-      {/* lägg in komponent här som tar emot en props*/}
-      <Test text="hej2" />
     </div>
   );
 }
