@@ -18,36 +18,19 @@ function PlayView() {
   const navigateHome = () => {
     history.push("/");
   };
-
-  const onCardClick = (clickedCard) => {
-    console.log(clickedCard);
-    if (clickedCard.isFocused || clickedCard.isMatched) {
-      return;
-    }
-
-    if (clickedCard?.id === card1?.id) {
-      return;
-    }
-
-    if (card1 === null) {
-      setCard1(clickedCard);
-    } else {
-      setCard2(clickedCard);
-      setCardsDisabled(true);
-    }
-  };
-
   const [card1, setCard1] = useState(null);
   const [card2, setCard2] = useState(null);
   const [cardsDisabled, setCardsDisabled] = useState(false);
+  const [cards, setCards] = useState([]);
+  const [poäng, setPoäng] = useState(0);
+  const [procent, setProcent] = useState(0);
 
-  // const reloadPage = () => {
-  //   history.push("/play");
-  // };
+  const [tries, setTries] = useState(0);
+
+  const [winMessage, setWinMessage] = useState("");
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      // console.log(card1);
       if (card1 === null || card2 === null) {
         return;
       }
@@ -62,23 +45,71 @@ function PlayView() {
     return () => clearTimeout(timeout);
   }, [card2]);
 
-  const updateCardListWithAMatch = () => {
-    let updatedCards = cards.map((value) => {
-      if (value === card1 || value === card2) {
-        value.isMatched = true;
-        return value;
-      }
-      return value;
-    });
-    setCards(updatedCards);
-  };
-
-  const [cards, setCards] = useState([]);
-
   useEffect(() => {
     // setRandomShuffledList();
     setShuffledList(startingCards);
   }, []);
+
+  useEffect(() => {
+    let points = 0;
+    // const cardsThatareTrue = cards.filter((item) => item.isMatched === true);
+    // alert(cardsThatareTrue.length);
+    for (let item of cards) {
+      if (item.isMatched === true) {
+        points += 1;
+      }
+
+      console.log(points);
+    }
+    setPoäng(points / 2);
+    // setProcent((poäng / tries) * 100);
+  }, [cards]);
+
+  // useEffect(() => {
+  //   let försök = 0;
+  //   // for (let card of cards) {
+  //   //   if (card2 === card) {
+  //   if (cardsDisabled) {
+  //     setTries(försök + 1);
+  //   }
+  // }, [cards]);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      const cardsThatareTrue = cards.filter((item) => item.isMatched === true);
+      if (cardsThatareTrue.length === cards.length) {
+        setWinMessage("You have won!!!!!!!");
+        console.log(`poäng: ${poäng} tries: ${tries}`);
+      }
+    }, 800);
+    return () => clearTimeout(timeout);
+  }, [cards]);
+
+  useEffect(() => {
+    if (poäng === 0 || tries === 0) return;
+
+    setProcent((poäng / tries) * 100);
+  }, [tries, poäng]);
+
+  const onCardClick = (clickedCard) => {
+    // let försök = 0;
+    console.log(clickedCard);
+    if (clickedCard.isFocused || clickedCard.isMatched) {
+      return;
+    }
+    if (clickedCard?.id === card1?.id) {
+      return;
+    }
+    if (card1 === null) {
+      setCard1(clickedCard);
+    } else {
+      setCard2(clickedCard);
+      setCardsDisabled(true);
+      setTries(tries + 1);
+
+      console.log(tries);
+    }
+  };
 
   const setRandomShuffledList = () => {
     const index = Math.floor(Math.random() * PlayCardList.length);
@@ -92,71 +123,40 @@ function PlayView() {
     setCards(shuffled);
   };
 
-  // console.log({ cards });
-  // function shuffleArray(cards) {
-  //   cards.sort(() => Math.random() - 0.5);
-  // }
-  // const shuffled = cards.sort(() => Math.random() - 0.5);
-
-  // var demoArray = [1, 3, 5];
-  // shuffleArray(cards);
-  // console.log(cards);
-
-  let randomCards = cards[Math.floor(Math.random() * cards.length)];
-  // console.log(randomCards);
-
-  const [poäng, setPoäng] = useState(0);
-  useEffect(() => {
-    let points = 0;
-    // const cardsThatareTrue = cards.filter((item) => item.isMatched === true);
-    // alert(cardsThatareTrue.length);
-    for (let item of cards) {
-      if (item.isMatched === true) {
-        points += 1;
+  const updateCardListWithAMatch = () => {
+    let updatedCards = cards.map((value) => {
+      if (value === card1 || value === card2) {
+        value.isMatched = true;
+        return value;
       }
-    }
-    setPoäng(points / 2);
-  }, [cards]);
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      const cardsThatareTrue = cards.filter((item) => item.isMatched === true);
-      if (cardsThatareTrue.length === cards.length) {
-        setWinMessage("You have won!!!!!!!");
-      }
-      // for (let item of cards) {
-      //   if (item.isMatched == true) {
-      //     setWinMessage("You have won!!!!!!!");
-      //   }
-      // }
-    }, 800);
-    return () => clearTimeout(timeout);
-  }, [cards]);
-
-  const [winMessage, setWinMessage] = useState("");
-  // useEffect(() => {
-  //   // const score = cards.filter((item) => item.isMatched === true);
-  //   // setScore(score);
-  //   for (let kort of cards) {
-  //     if (kort.isMatched === true) {
-  //       setScore = "won";
-  //     }
-  //   }
-  // }, [cards]);
-
+      return value;
+    });
+    setCards(updatedCards);
+  };
   //check cards with useeffect
   //somehow deside if we have won
   //start make alert or console.log when all is matched
   //loop for see if all is matched maybe
 
   //state useefect metoder 1 2 3
-
+  // console.log(procent);
   function refreshPage() {
     window.location.reload(false);
   }
 
+  const procentMessage = (procentValue) => {
+    if (procentValue <= 40) {
+      return "Try harder";
+    } else if (procentValue <= 60) {
+      return "Good good";
+    }
+
+    return "You had over 80%, Good Work!";
+  };
+
   return (
     <div className="background2">
-      <div className="arrow" onClick={navigateHome}></div>
+      <div className="arrow" onClick={() => navigateHome()}></div>
       <div className="playview-container">
         <div className="vinnar-text">{winMessage}</div>
         {cards.map((card) => {
@@ -172,7 +172,10 @@ function PlayView() {
         })}
       </div>
       <div className=" info-container">
+        <div>Tries: {tries}</div>
         <div>Points: {poäng}</div>
+        <div>{winMessage && procentMessage(procent)}</div>
+
         {/* {<div className="vinnar-text">{winMessage}</div>} */}
         {/* <button onClick={reloadPage}>Restart</button> */}
         <button onClick={refreshPage}>Click to reload!</button>
