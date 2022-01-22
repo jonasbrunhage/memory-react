@@ -4,15 +4,6 @@ import { useHistory } from "react-router-dom";
 import Card from "./Components/Card/Card";
 import { PlayCardList, startingCards } from "./CardLists";
 
-// const startingCards = [
-//   { id: 1, number: 1, isMatched: false },
-//   { id: 2, number: 2, isMatched: false },
-//   { id: 3, number: 3, isMatched: false },
-//   { id: 4, number: 1, isMatched: false },
-//   { id: 5, number: 2, isMatched: false },
-//   { id: 6, number: 3, isMatched: false },
-// ];
-
 function PlayView() {
   let history = useHistory();
   const navigateHome = () => {
@@ -35,7 +26,6 @@ function PlayView() {
         return;
       }
       if (card1.number === card2.number) {
-        // setCards(cards.filter((card) => card.number !=== card1.number));
         updateCardListWithAMatch();
       }
       setCard1(null);
@@ -46,14 +36,11 @@ function PlayView() {
   }, [card2]);
 
   useEffect(() => {
-    // setRandomShuffledList();
-    setShuffledList(startingCards);
+    setShuffledList(PlayCardList[1]);
   }, []);
 
   useEffect(() => {
     let points = 0;
-    // const cardsThatareTrue = cards.filter((item) => item.isMatched === true);
-    // alert(cardsThatareTrue.length);
     for (let item of cards) {
       if (item.isMatched === true) {
         points += 1;
@@ -62,17 +49,7 @@ function PlayView() {
       console.log(points);
     }
     setPoäng(points / 2);
-    // setProcent((poäng / tries) * 100);
   }, [cards]);
-
-  // useEffect(() => {
-  //   let försök = 0;
-  //   // for (let card of cards) {
-  //   //   if (card2 === card) {
-  //   if (cardsDisabled) {
-  //     setTries(försök + 1);
-  //   }
-  // }, [cards]);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -92,7 +69,6 @@ function PlayView() {
   }, [tries, poäng]);
 
   const onCardClick = (clickedCard) => {
-    // let försök = 0;
     console.log(clickedCard);
     if (clickedCard.isFocused || clickedCard.isMatched) {
       return;
@@ -113,8 +89,6 @@ function PlayView() {
 
   const setRandomShuffledList = () => {
     const index = Math.floor(Math.random() * PlayCardList.length);
-    // const shuffled = PlayCardList[index].sort(() => Math.random() - 0.5);
-    // setCards(shuffled);
     setShuffledList(PlayCardList[index]);
   };
 
@@ -133,30 +107,30 @@ function PlayView() {
     });
     setCards(updatedCards);
   };
-  //check cards with useeffect
-  //somehow deside if we have won
-  //start make alert or console.log when all is matched
-  //loop for see if all is matched maybe
 
-  //state useefect metoder 1 2 3
-  // console.log(procent);
   function refreshPage() {
     window.location.reload(false);
   }
 
-  const procentMessage = (procentValue) => {
-    if (procentValue <= 40) {
-      return "Try harder";
-    } else if (procentValue <= 60) {
-      return "Good good";
+  const procentMessage = () => {
+    var winPercentWithOneDecimal = parseFloat(procent).toFixed(1);
+    if (procent <= 40) {
+      return `Try harder 🐐 ${winPercentWithOneDecimal}%`;
+    } else if (procent <= 60) {
+      return `Good good 🐐 ${winPercentWithOneDecimal}%`;
     }
 
-    return "You had over 80%, Good Work!";
+    return (
+      "You had over 80%, Good Work! 🐐" + `${winPercentWithOneDecimal} procent`
+    );
   };
 
   return (
-    <div className="background2">
-      <div className="arrow" onClick={() => navigateHome()}></div>
+    <div className="playview-wrapper">
+      <div className="playview-points">
+        <p>Tries: {tries}</p>
+        <p>Points: {poäng}</p>
+      </div>
       <div className="playview-container">
         <div className="vinnar-text">{winMessage}</div>
         {cards.map((card) => {
@@ -171,14 +145,10 @@ function PlayView() {
           );
         })}
       </div>
-      <div className=" info-container">
-        <div>Tries: {tries}</div>
-        <div>Points: {poäng}</div>
-        <div>{winMessage && procentMessage(procent)}</div>
-
-        {/* {<div className="vinnar-text">{winMessage}</div>} */}
-        {/* <button onClick={reloadPage}>Restart</button> */}
-        <button onClick={refreshPage}>Click to reload!</button>
+      <div className="info-container">
+        <p>{winMessage && procentMessage()}</p>
+        <button onClick={refreshPage}>Play again!</button>
+        <button onClick={navigateHome}>Home</button>
       </div>
     </div>
   );

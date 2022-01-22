@@ -8,11 +8,17 @@ export const startingCards = [
 ];
 
 const startingCards2 = [
-  { id: 1, number: "A", isMatched: false },
-  { id: 2, number: "B", isMatched: false },
-  { id: 3, number: "C", isMatched: false },
-  { id: 4, number: "A", isMatched: false },
-  { id: 5, number: "B", isMatched: false },
-  { id: 6, number: "C", isMatched: false },
+  { id: 2, number: "B", isMatched: false, src: "./pngegg1.png" },
+  { id: 3, number: "C", isMatched: false, src: "./pngegg2.png" },
+  { id: 4, number: "A", isMatched: false, src: "./pngegg.png" },
+  { id: 1, number: "A", isMatched: false, src: "./pngegg.png" },
+  { id: 5, number: "B", isMatched: false, src: "./pngegg1.png" },
+  { id: 6, number: "C", isMatched: false, src: "./pngegg2.png" },
+  { id: 7, number: "D", isMatched: false, src: "./pngegg3.png" },
+  { id: 8, number: "D", isMatched: false, src: "./pngegg3.png" },
+  { id: 9, number: "E", isMatched: false, src: "./pngegg4.png" },
+  { id: 10, number: "E", isMatched: false, src: "./pngegg4.png" },
+  { id: 11, number: "F", isMatched: false, src: "./pngegg5.png" },
+  { id: 12, number: "F", isMatched: false, src: "./pngegg5.png" },
 ];
 export const PlayCardList = [startingCards, startingCards2];

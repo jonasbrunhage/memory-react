@@ -17,6 +17,11 @@ function HomeView() {
           <button className="play-button" onClick={handleClick}>
             <span className="play-text">PLAY</span>
           </button>
+          <div className="levels">
+            <div className="level-box">3x4</div>
+            <div className="level-box">4x4</div>
+            <div className="level-box">5x4</div>
+          </div>
         </div>
         <div>
           <img className="image" src="\memory-cards.png" alt="card-pic"></img>
