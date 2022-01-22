@@ -1,5 +1,4 @@
 .playview-wrapper {
-  padding-top: 2em;
   display: flex;
   flex-direction: column;
   max-width: 700px;
@@ -23,18 +22,6 @@
   grid-template-columns: repeat(4, auto);
   grid-gap: 10px;
   position: relative;
-}
-
-@media only screen and (max-width: 1200px) {
-  .playview-container {
-    grid-template-columns: repeat(3, auto);
-  }
-}
-
-@media only screen and (max-width: 600px) {
-  .playview-container {
-    grid-template-columns: repeat(2, auto);
-  }
 }
 
 .vinnar-text {

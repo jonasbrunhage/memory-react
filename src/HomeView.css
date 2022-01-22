@@ -1,50 +1,32 @@
-.background {
+.homeview-wrapper {
   display: flex;
-
-  /* align-items: center; */
   justify-content: center;
-
-  background-color: #282c34;
   min-height: 100vh;
-
   color: white;
   line-height: 1em;
   font-size: 2em;
 }
-.image {
+
+.homeview-container {
+  display: flex;
+  align-items: center;
+}
+
+.homeview-image {
   width: 300px;
   height: 200px;
   -ms-transform: rotate(20deg); /* IE 9 */
   transform: rotate(5deg);
 }
-.play-button {
-  background-color: rgb(15, 228, 15);
-  border-radius: 24px;
-  border: none;
-  font-size: 2em;
-  padding: 10px 40px;
-  color: white;
-}
-.play-text {
-  text-shadow: 6px -3px 2px teal, 0 0 20px teal;
-}
-.play-button:hover {
-  cursor: pointer;
-}
-.flex {
-  display: flex;
 
-  align-items: center;
-}
 .levels {
-  margin-top: 40px;
-
-  border: 1px solid red;
+  margin-bottom: 40px;
   display: flex;
-  justify-content: space-around;
 }
+
 .level-box {
   display: flex;
+  margin-right: 40px;
   width: 80px;
   height: 80px;
   border: 2px solid white;
@@ -54,7 +36,45 @@
   top: 0;
   transition: top ease 0.3s;
 }
+
 .level-box:hover {
   top: -10px;
   cursor: pointer;
+}
+
+.level-box-selected {
+  background-color: green;
+}
+
+.play-button {
+  background-color: rgb(15, 228, 15);
+  border-radius: 24px;
+  border: none;
+  font-size: 2em;
+  padding: 10px 40px;
+  color: white;
+}
+
+.play-button:hover {
+  cursor: pointer;
+}
+
+.play-text {
+  text-shadow: 6px -3px 2px teal, 0 0 20px teal;
+}
+
+@media only screen and (max-width: 800px) {
+  .homeview-container {
+    flex-direction: column-reverse;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .levels {
+    justify-content: space-around;
+  }
+
+  .level-box {
+    margin-right: 0px;
+  }
 }

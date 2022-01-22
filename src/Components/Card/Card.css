@@ -57,3 +57,44 @@
   background-color: goldenrod;
   transition: background-color 0.2s ease-in-out;
 }
+
+.flip-card img {
+  width: 200px;
+  height: 200px;
+}
+
+@media only screen and (max-width: 800px) {
+  .flip-card {
+    width: 150px;
+    height: 150px;
+  }
+
+  .flip-card img {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .flip-card {
+    width: 100px;
+    height: 100px;
+  }
+
+  .flip-card img {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .flip-card {
+    width: 80px;
+    height: 80px;
+  }
+
+  .flip-card img {
+    width: 80px;
+    height: 80px;
+  }
+}

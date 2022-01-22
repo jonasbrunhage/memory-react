@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from "react";
 import "./PlayView.css";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import Card from "./Components/Card/Card";
-import { PlayCardList, startingCards } from "./CardLists";
+import { PlayCardList } from "./CardLists";
 
 function PlayView() {
   let history = useHistory();
   const navigateHome = () => {
-    history.push("/");
+    history.goBack();
   };
+
+  const search = useLocation().search;
+
   const [card1, setCard1] = useState(null);
   const [card2, setCard2] = useState(null);
   const [cardsDisabled, setCardsDisabled] = useState(false);
@@ -36,7 +39,15 @@ function PlayView() {
   }, [card2]);
 
   useEffect(() => {
-    setShuffledList(PlayCardList[1]);
+    const squareAmount = new URLSearchParams(search).get("square-amounts");
+
+    if (squareAmount == 12) {
+      setShuffledList(PlayCardList[0]);
+    } else if (squareAmount == 16) {
+      setShuffledList(PlayCardList[1]);
+    } else {
+      setShuffledList(PlayCardList[2]);
+    }
   }, []);
 
   useEffect(() => {

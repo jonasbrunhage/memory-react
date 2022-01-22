@@ -1,13 +1,4 @@
-export const startingCards = [
-  { id: 1, number: 1, isMatched: false },
-  { id: 2, number: 2, isMatched: false },
-  { id: 3, number: 3, isMatched: false },
-  { id: 4, number: 1, isMatched: false },
-  { id: 5, number: 2, isMatched: false },
-  { id: 6, number: 3, isMatched: false },
-];
-
-const startingCards2 = [
+const startingCards12 = [
   { id: 2, number: "B", isMatched: false, src: "./pngegg1.png" },
   { id: 3, number: "C", isMatched: false, src: "./pngegg2.png" },
   { id: 4, number: "A", isMatched: false, src: "./pngegg.png" },
@@ -21,4 +12,47 @@ const startingCards2 = [
   { id: 11, number: "F", isMatched: false, src: "./pngegg5.png" },
   { id: 12, number: "F", isMatched: false, src: "./pngegg5.png" },
 ];
-export const PlayCardList = [startingCards, startingCards2];
+
+const startingCards16 = [
+  { id: 2, number: "B", isMatched: false, src: "./pngegg1.png" },
+  { id: 3, number: "C", isMatched: false, src: "./pngegg2.png" },
+  { id: 4, number: "A", isMatched: false, src: "./pngegg.png" },
+  { id: 1, number: "A", isMatched: false, src: "./pngegg.png" },
+  { id: 5, number: "B", isMatched: false, src: "./pngegg1.png" },
+  { id: 6, number: "C", isMatched: false, src: "./pngegg2.png" },
+  { id: 7, number: "D", isMatched: false, src: "./pngegg3.png" },
+  { id: 8, number: "D", isMatched: false, src: "./pngegg3.png" },
+  { id: 9, number: "E", isMatched: false, src: "./pngegg4.png" },
+  { id: 10, number: "E", isMatched: false, src: "./pngegg4.png" },
+  { id: 11, number: "F", isMatched: false, src: "./pngegg5.png" },
+  { id: 12, number: "F", isMatched: false, src: "./pngegg5.png" },
+  { id: 13, number: "G", isMatched: false, src: "./pngegg6.png" },
+  { id: 14, number: "G", isMatched: false, src: "./pngegg6.png" },
+  { id: 15, number: "H", isMatched: false, src: "./pngegg7.png" },
+  { id: 16, number: "H", isMatched: false, src: "./pngegg7.png" },
+];
+
+const startingCards20 = [
+  { id: 2, number: "B", isMatched: false, src: "./pngegg1.png" },
+  { id: 3, number: "C", isMatched: false, src: "./pngegg2.png" },
+  { id: 4, number: "A", isMatched: false, src: "./pngegg.png" },
+  { id: 1, number: "A", isMatched: false, src: "./pngegg.png" },
+  { id: 5, number: "B", isMatched: false, src: "./pngegg1.png" },
+  { id: 6, number: "C", isMatched: false, src: "./pngegg2.png" },
+  { id: 7, number: "D", isMatched: false, src: "./pngegg3.png" },
+  { id: 8, number: "D", isMatched: false, src: "./pngegg3.png" },
+  { id: 9, number: "E", isMatched: false, src: "./pngegg4.png" },
+  { id: 10, number: "E", isMatched: false, src: "./pngegg4.png" },
+  { id: 11, number: "F", isMatched: false, src: "./pngegg5.png" },
+  { id: 12, number: "F", isMatched: false, src: "./pngegg5.png" },
+  { id: 13, number: "G", isMatched: false, src: "./pngegg6.png" },
+  { id: 14, number: "G", isMatched: false, src: "./pngegg6.png" },
+  { id: 15, number: "H", isMatched: false, src: "./pngegg7.png" },
+  { id: 16, number: "H", isMatched: false, src: "./pngegg7.png" },
+  { id: 17, number: "I", isMatched: false, src: "./pngegg8.png" },
+  { id: 18, number: "I", isMatched: false, src: "./pngegg8.png" },
+  { id: 19, number: "J", isMatched: false, src: "./pngegg9.png" },
+  { id: 20, number: "J", isMatched: false, src: "./pngegg9.png" },
+];
+
+export const PlayCardList = [startingCards12, startingCards16, startingCards20];
