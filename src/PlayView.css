@@ -20,9 +20,15 @@
 .playview-container {
   display: grid;
   justify-content: center;
-  grid-template-columns: repeat(3, auto);
+  grid-template-columns: repeat(4, auto);
   grid-gap: 10px;
   position: relative;
+}
+
+@media only screen and (max-width: 1200px) {
+  .playview-container {
+    grid-template-columns: repeat(3, auto);
+  }
 }
 
 @media only screen and (max-width: 600px) {
