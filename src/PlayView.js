@@ -7,7 +7,8 @@ import { PlayCardList } from "./CardLists";
 function PlayView() {
   let history = useHistory();
   const navigateHome = () => {
-    history.goBack();
+    history.push(`/`);
+    window.location.reload(false);
   };
 
   const search = useLocation().search;
@@ -22,6 +23,7 @@ function PlayView() {
   const [tries, setTries] = useState(0);
 
   const [winMessage, setWinMessage] = useState("");
+  const [newGrid, setNewGrid] = useState("");
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -126,21 +128,47 @@ function PlayView() {
   const procentMessage = () => {
     var winPercentWithOneDecimal = parseFloat(procent).toFixed(1);
     if (procent <= 40) {
-      return `Try harder 🐐 ${winPercentWithOneDecimal}%`;
+      // return `Blub blub 🐟, you got ${winPercentWithOneDecimal}% It can only be better`;
+      return (
+        <div className="frame">
+          <p className="stor">
+            Blub blub 🐟, you got {winPercentWithOneDecimal}%
+          </p>
+          <p className="liten">It can only be better</p>
+        </div>
+      );
     } else if (procent <= 60) {
-      return `Good good 🐐 ${winPercentWithOneDecimal}%`;
+      // return `Good good 🐐 ${winPercentWithOneDecimal}%`;
+      return (
+        <div className="frame">
+          <p className="stor">
+            You had over 60%, Good Work! 🐐" {winPercentWithOneDecimal}%
+          </p>
+          <p className="liten">fffff</p>
+        </div>
+      );
     }
 
     return (
-      "You had over 80%, Good Work! 🐐" + `${winPercentWithOneDecimal} procent`
+      <div className="frame">
+        <p className="stor">
+          You had over 80%, Good Work! 🐐" {winPercentWithOneDecimal}%
+        </p>
+        <p className="liten">fffff</p>
+      </div>
     );
+  };
+  const image = () => {
+    return <img className="ash" src="\pngegg13.png" alt="card-pic"></img>;
   };
 
   return (
     <div className="playview-wrapper">
       <div className="playview-points">
-        <p>Tries: {tries}</p>
-        <p>Points: {poäng}</p>
+        <p>
+          Tries: <span className="färg">{tries}</span>
+        </p>
+        <p className="abc">Points: {poäng}</p>
       </div>
       <div className="playview-container">
         <div className="vinnar-text">{winMessage}</div>
@@ -158,6 +186,9 @@ function PlayView() {
       </div>
       <div className="info-container">
         <p>{winMessage && procentMessage()}</p>
+        {/* {winMessage && image} */}
+        {winMessage && image()}
+        {/* <img className="ash" src="\pngegg13.png" alt="card-pic"></img> */}
         <button onClick={refreshPage}>Play again!</button>
         <button onClick={navigateHome}>Home</button>
       </div>

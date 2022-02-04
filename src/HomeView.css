@@ -13,8 +13,8 @@
 }
 
 .homeview-image {
-  width: 300px;
-  height: 200px;
+  width: 400px;
+  height: 280px;
   -ms-transform: rotate(20deg); /* IE 9 */
   transform: rotate(5deg);
 }
@@ -26,6 +26,7 @@
 
 .level-box {
   display: flex;
+  flex-direction: column;
   margin-right: 40px;
   width: 80px;
   height: 80px;
@@ -35,6 +36,12 @@
   position: relative;
   top: 0;
   transition: top ease 0.3s;
+  font-weight: bold;
+}
+#level-difficulty-text {
+  font-size: 0.5em;
+  font-weight: 600;
+  font-style: italic;
 }
 
 .level-box:hover {
@@ -43,7 +50,8 @@
 }
 
 .level-box-selected {
-  background-color: green;
+  background-color: white;
+  color: black;
 }
 
 .play-button {
