@@ -185,12 +185,18 @@ function PlayView() {
         })}
       </div>
       <div className="info-container">
-        <p>{winMessage && procentMessage()}</p>
+        <div className="playview-message">{winMessage && procentMessage()}</div>
         {/* {winMessage && image} */}
         {winMessage && image()}
         {/* <img className="ash" src="\pngegg13.png" alt="card-pic"></img> */}
-        <button onClick={refreshPage}>Play again!</button>
-        <button onClick={navigateHome}>Home</button>
+        <div className="playview-buttons">
+          <button onClick={refreshPage}>
+            <img src="\redo-alt-solid.svg"></img>
+          </button>
+          <button onClick={navigateHome}>
+            <img src="\home-solid.svg"></img>
+          </button>
+        </div>
       </div>
     </div>
   );
