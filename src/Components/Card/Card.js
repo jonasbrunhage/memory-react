@@ -17,7 +17,7 @@ function Card({ card, isFocused, handleClick, isDisabled }) {
         </div>
         <div className={`flip-card-back ${card.isMatched ? "matched" : ""}`}>
           {/* <h2>{card.number}</h2> */}
-          <img src={card.src} />
+          <img src={card.src} alt="play-card" />
           {/* <img>{card.src}</img> */}
           {/* <img src="\logo192.png" /> */}
           {/* <img src="\logo512.png" alt="Avatar2" width={200} height={200} /> */}

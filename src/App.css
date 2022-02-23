@@ -13,26 +13,25 @@
   }
 }
 
-.body-background{
+.body-background {
   background-color: #282c34;
   min-height: 100vh;
   /* display: flex;
   
   align-items: center;
   justify-content: space-evenly; */
-  
+
   /* color: white;
   line-height: 1em;
   font-size: 2em; */
-
 }
-.image{
+.image {
   width: 300px;
   height: 200px;
   -ms-transform: rotate(20deg); /* IE 9 */
   transform: rotate(5deg);
 }
-.play-button{
+/* .play-button{
   background-color: rgb(15, 228, 15);
   border-radius: 24px;
   border: none;
@@ -43,7 +42,7 @@
 }
 .play-text{
   text-shadow: 6px -3px 2px teal, 0 0 20px teal;
-}
+} */
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

@@ -11,7 +11,7 @@ function PlayView() {
     window.location.reload(false);
   };
 
-  const search = useLocation().search;
+  const searchParams = useLocation().search;
 
   const [card1, setCard1] = useState(null);
   const [card2, setCard2] = useState(null);
@@ -19,17 +19,14 @@ function PlayView() {
   const [cards, setCards] = useState([]);
   const [poäng, setPoäng] = useState(0);
   const [procent, setProcent] = useState(0);
-
   const [tries, setTries] = useState(0);
-
   const [winMessage, setWinMessage] = useState("");
-  const [newGrid, setNewGrid] = useState("");
 
   useEffect(() => {
+    if (card1 === null || card2 === null) {
+      return;
+    }
     const timeout = setTimeout(() => {
-      if (card1 === null || card2 === null) {
-        return;
-      }
       if (card1.number === card2.number) {
         updateCardListWithAMatch();
       }
@@ -38,19 +35,22 @@ function PlayView() {
       setCardsDisabled(false);
     }, 1200);
     return () => clearTimeout(timeout);
-  }, [card2]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [card2, card1]);
 
   useEffect(() => {
-    const squareAmount = new URLSearchParams(search).get("square-amounts");
+    const squareAmount = parseInt(
+      new URLSearchParams(searchParams).get("square-amounts")
+    );
 
-    if (squareAmount == 12) {
+    if (squareAmount === 12) {
       setShuffledList(PlayCardList[0]);
-    } else if (squareAmount == 16) {
+    } else if (squareAmount === 16) {
       setShuffledList(PlayCardList[1]);
     } else {
       setShuffledList(PlayCardList[2]);
     }
-  }, []);
+  }, [searchParams]);
 
   useEffect(() => {
     let points = 0;
@@ -58,8 +58,6 @@ function PlayView() {
       if (item.isMatched === true) {
         points += 1;
       }
-
-      console.log(points);
     }
     setPoäng(points / 2);
   }, [cards]);
@@ -69,7 +67,6 @@ function PlayView() {
       const cardsThatareTrue = cards.filter((item) => item.isMatched === true);
       if (cardsThatareTrue.length === cards.length) {
         setWinMessage("You have won!!!!!!!");
-        console.log(`poäng: ${poäng} tries: ${tries}`);
       }
     }, 800);
     return () => clearTimeout(timeout);
@@ -82,7 +79,6 @@ function PlayView() {
   }, [tries, poäng]);
 
   const onCardClick = (clickedCard) => {
-    console.log(clickedCard);
     if (clickedCard.isFocused || clickedCard.isMatched) {
       return;
     }
@@ -95,14 +91,7 @@ function PlayView() {
       setCard2(clickedCard);
       setCardsDisabled(true);
       setTries(tries + 1);
-
-      console.log(tries);
     }
-  };
-
-  const setRandomShuffledList = () => {
-    const index = Math.floor(Math.random() * PlayCardList.length);
-    setShuffledList(PlayCardList[index]);
   };
 
   const setShuffledList = (cardList) => {
@@ -122,39 +111,37 @@ function PlayView() {
   };
 
   function refreshPage() {
-    window.location.reload(false);
+    window.location.reload();
   }
 
   const procentMessage = () => {
     var winPercentWithOneDecimal = parseFloat(procent).toFixed(1);
     if (procent <= 40) {
-      // return `Blub blub 🐟, you got ${winPercentWithOneDecimal}% It can only be better`;
       return (
         <div className="frame">
-          <p className="stor">
+          <p className="playview-quote">
             Blub blub 🐟, you got {winPercentWithOneDecimal}%
           </p>
-          <p className="liten">It can only be better</p>
+          <p className="playview-small-quote">It can only be better</p>
         </div>
       );
     } else if (procent <= 60) {
-      // return `Good good 🐐 ${winPercentWithOneDecimal}%`;
       return (
         <div className="frame">
-          <p className="stor">
+          <p className="playview-quote">
             You had over 60%, Good Work! 🐐" {winPercentWithOneDecimal}%
           </p>
-          <p className="liten">fffff</p>
+          <p className="playview-small-quote">fffff</p>
         </div>
       );
     }
 
     return (
       <div className="frame">
-        <p className="stor">
+        <p className="playview-quote">
           You had over 80%, Good Work! 🐐" {winPercentWithOneDecimal}%
         </p>
-        <p className="liten">fffff</p>
+        <p className="playview-small-quote">fffff</p>
       </div>
     );
   };
@@ -166,12 +153,12 @@ function PlayView() {
     <div className="playview-wrapper">
       <div className="playview-points">
         <p>
-          Tries: <span className="färg">{tries}</span>
+          Tries: <span className="playview-tries-value">{tries}</span>
         </p>
-        <p className="abc">Points: {poäng}</p>
+        <p>Points: {poäng}</p>
       </div>
       <div className="playview-container">
-        <div className="vinnar-text">{winMessage}</div>
+        <div className="playview-win-message">{winMessage}</div>
         {cards.map((card) => {
           return (
             <Card
@@ -186,15 +173,13 @@ function PlayView() {
       </div>
       <div className="info-container">
         <div className="playview-message">{winMessage && procentMessage()}</div>
-        {/* {winMessage && image} */}
         {winMessage && image()}
-        {/* <img className="ash" src="\pngegg13.png" alt="card-pic"></img> */}
         <div className="playview-buttons">
           <button onClick={refreshPage}>
-            <img src="\redo-alt-solid.svg"></img>
+            <img src="\redo-alt-solid.svg" alt="redo"></img>
           </button>
           <button onClick={navigateHome}>
-            <img src="\home-solid.svg"></img>
+            <img src="\home-solid.svg" alt="home"></img>
           </button>
         </div>
       </div>

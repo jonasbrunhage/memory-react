@@ -12,25 +12,12 @@
   display: flex;
   justify-content: space-between;
   margin-top: 10px;
-  /* margin-bottom: 10px; */
-  /* font-family: "Press Start 2P", cursive;
-  font-size: medium; */
   text-align: center;
   margin-left: 3em;
   margin-right: 2.5em;
 }
-.playview-points:first-child {
-  /* margin-right: 16px; */
-  /* margin-left: 40px; */
-}
-.playview-points:nth-child(1) {
-  /* margin-right: 16px; */
-}
-/* .abc {
-  color: #4caf50;
-  margin-right: 20px;
-} */
-.färg {
+
+.playview-tries-value {
   color: red;
 }
 
@@ -42,11 +29,7 @@
   position: relative;
 }
 
-.new-grid {
-  grid-template-columns: repeat(5, auto);
-}
-
-.vinnar-text {
+.playview-win-message {
   position: absolute;
   justify-self: center;
   align-self: center;
@@ -58,6 +41,7 @@
 
   background: linear-gradient(45deg, rgb(0, 0, 214), rgb(238, 0, 0) 80%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   background-size: 100%;
 
@@ -66,41 +50,32 @@
 }
 
 @media only screen and (max-width: 600px) {
-  .vinnar-text {
+  .playview-win-message {
     font-size: 1em;
   }
 }
 @media only screen and (max-width: 420px) {
-  .vinnar-text {
+  .playview-win-message {
     font-size: 0.8em;
   }
 }
 
 @keyframes zoom {
   0% {
-    /* transform: scale(1); */
     transform: rotate(-10deg) scale(1.4);
   }
   100% {
-    /* transform: scale(1.5); */
     transform: rotate(-20deg) scale(1);
   }
 }
 
 .info-container {
-  /* margin-top: 20px; */
   display: flex;
   flex-direction: column;
   align-self: center;
   text-align: center;
   position: relative;
-  /* margin: 0.5em; */
-  /* margin-top: -1em; */
 }
-
-/* .info-container p {
-  margin: 0.5em;
-} */
 
 .info-container button {
   background-color: #a7a7a7;
@@ -108,21 +83,21 @@
   width: 50px;
   height: 50px;
   margin: 0 auto;
-  margin-bottom: 12px;
   color: white;
-  /* padding: 15px 15px; */
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  /* font-size: 16px; */
   border-radius: 25px;
   box-shadow: 0px 2px 4px #aaa, inset 0px 2px 3px rgb(224, 222, 222);
-
   margin-left: 1em;
+  margin-right: 1em;
+  margin: 0 0.7em 0 0.7em;
 }
+
 .playview-buttons {
-  margin-top: 0.5em;
+  margin-top: 0.8em;
 }
+
 .playview-message {
   margin-top: 0.5em;
 }
@@ -130,52 +105,39 @@
 .info-container button img {
   width: 25px;
   height: 25px;
-
-  /* border: 1px solid black; */
   filter: invert(20%);
-
-  /* margin-right: -2px; */
   margin-top: 2px;
 }
+
 .info-container button:hover {
   filter: invert(0);
   background-color: #f3f1f1;
 }
-.info-container button img:hover {
+
+.info-container button:hover img {
   filter: invert(0);
   filter: saturate(200%);
 }
 
-.liten {
+.playview-small-quote {
   font-size: clamp(1.2rem, 3.4vw, 1.7rem);
   margin: 0;
   font-style: italic;
-  /* padding-bottom: 0.3em; */
 }
-/* .frame {
-  border: solid 2px orange;
-  border-radius: 10px;
-  padding: 10px;
-  background-color: rgb(253, 253, 253);
-  color: black;
-} */
 
 .frame {
-  /* border: 3px solid white; */
   background: rgb(235, 235, 235);
   position: relative;
   border-radius: 20px;
   color: black;
   padding: 10px;
-  /* margin-right: 2em;
-  margin-left: 2em; */
 }
+
 .frame:before {
   content: "";
   position: absolute;
   top: calc(100% - 28px);
   left: 45px;
-
   height: 50px;
   width: 35px;
   background: linear-gradient(
@@ -183,31 +145,23 @@
     transparent 0 50%,
     rgb(235, 235, 235) 50% 100%
   );
-  /* top: calc(100% - 10px); */
-  /* border-right: inherit;
-  border-bottom: inherit; */
   transform: rotate(60deg);
 }
-.stor {
-  /* font-size: 28px; */
+
+.playview-quote {
   font-size: clamp(1.2rem, 3.5vw, 1.9rem);
-  /* font-style: italic; */
   font-weight: 500;
   margin: 2px 0px 8px 0px;
-  /* font-family: "Press Start 2P";
-  word-spacing: -10px; */
-
-  /* font-size: medium; */
 }
+
 .ash {
   width: 100px;
   height: 100px;
   position: absolute;
-  /* bottom: 150px; */
-  /* top: 160px; */
-  bottom: -30px;
+  bottom: -35px;
   left: -30px;
 }
+
 @media only screen and (max-width: 800px) {
   .frame {
     margin-right: 2em;
@@ -217,6 +171,7 @@
     left: 30px;
   }
 }
+
 @media only screen and (max-width: 600px) {
   .playview-points {
     margin-right: 4em;
@@ -231,6 +186,7 @@
     left: 60px;
   }
 }
+
 @media only screen and (max-width: 534px) {
   .frame {
     margin-right: 2em;
@@ -248,11 +204,4 @@
   .playview-points {
     font-size: 0.7em;
   }
-  /* .frame {
-    margin-right: 0em;
-    margin-left: 0em;
-  }
-  .playview-message {
-    width: 90%;
-  } */
 }

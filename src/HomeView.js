@@ -27,22 +27,22 @@ function HomeView() {
               onClick={() => setSquareAmounts(12)}
               className={`level-box ${isSelectedStyle(12)}`}
             >
-              <div id="level-difficulty-text">Easy</div>
-              <div>12</div>
+              <p id="level-difficulty-text">Easy</p>
+              <p>12</p>
             </div>
             <div
               onClick={() => setSquareAmounts(16)}
               className={`level-box ${isSelectedStyle(16)}`}
             >
-              <div id="level-difficulty-text">Normal</div>
-              <div>16</div>
+              <p id="level-difficulty-text">Normal</p>
+              <p>16</p>
             </div>
             <div
               onClick={() => setSquareAmounts(20)}
               className={`level-box ${isSelectedStyle(20)}`}
             >
-              <div id="level-difficulty-text">Hard</div>
-              <div>20</div>
+              <p id="level-difficulty-text">Hard</p>
+              <p>20</p>
             </div>
           </div>
           <button className="play-button" onClick={handleClick}>

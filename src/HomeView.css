@@ -15,7 +15,7 @@
 .homeview-image {
   width: 400px;
   height: 280px;
-  -ms-transform: rotate(20deg); /* IE 9 */
+  -ms-transform: rotate(20deg);
   transform: rotate(5deg);
 }
 
@@ -38,6 +38,11 @@
   transition: top ease 0.3s;
   font-weight: bold;
 }
+
+.level-box p {
+  margin: 0;
+}
+
 #level-difficulty-text {
   font-size: 0.5em;
   font-weight: 600;
@@ -55,20 +60,65 @@
 }
 
 .play-button {
-  background-color: rgb(15, 228, 15);
+  background: linear-gradient(
+    90deg,
+    rgba(17, 219, 10, 1) 0%,
+    rgb(56, 153, 12) 100%
+  );
   border-radius: 24px;
   border: none;
   font-size: 2em;
   padding: 10px 40px;
   color: white;
+
+  box-shadow: rgba(44, 187, 99, 0.2) 0 -25px 18px -14px inset,
+    rgba(44, 187, 99, 0.15) 0 1px 2px, rgba(44, 187, 99, 0.15) 0 2px 4px,
+    rgba(44, 187, 99, 0.15) 0 4px 8px, rgba(44, 187, 99, 0.15) 0 8px 16px,
+    rgba(44, 187, 99, 0.15) 0 16px 32px;
+
+  transition: all 400ms;
 }
 
 .play-button:hover {
   cursor: pointer;
+
+  box-shadow: rgba(44, 187, 99, 0.35) 0 5px 18px -14px inset,
+    rgba(44, 187, 99, 0.25) 0 1px 2px, rgba(44, 187, 99, 0.25) 0 2px 4px,
+    rgba(44, 187, 99, 0.25) 0 4px 8px, rgba(44, 187, 99, 0.25) 0 8px 16px,
+    rgba(44, 187, 99, 0.25) 0 16px 32px;
+
+  transform: scale(1.05) rotate(-2deg);
+
+  background: linear-gradient(
+    90deg,
+    rgba(17, 219, 10, 1) 0%,
+    rgb(13, 172, 13, 0.9) 100%
+  );
+}
+
+.play-button:hover .play-text {
+  animation: button-effect 700ms forwards;
 }
 
 .play-text {
-  text-shadow: 6px -3px 2px teal, 0 0 20px teal;
+  text-shadow: 0.1em 0 0.3em rgba(255, 0, 0, 0.75),
+    -0.07em -0.07em 0 rgba(1, 187, 1, 0.75),
+    0.1em 0.08em 0 rgba(0, 0, 255, 0.75);
+  font-family: "Press Start 2P";
+  font-size: 0.6em;
+}
+
+@keyframes button-effect {
+  0% {
+    text-shadow: 0.1em 0 0.3em rgba(255, 0, 0, 0.75),
+      -0.07em -0.07em 0 rgba(1, 187, 1, 0.75),
+      0.1em 0.08em 0 rgba(0, 0, 255, 0.75);
+  }
+
+  100% {
+    text-shadow: 0.025em 0.05em 0.1em rgba(255, 0, 0, 0.75),
+      0.05em 0 0 rgba(1, 228, 1, 0.75), 0 -0.05em 0 rgba(0, 0, 255, 0.35);
+  }
 }
 
 @media only screen and (max-width: 800px) {
