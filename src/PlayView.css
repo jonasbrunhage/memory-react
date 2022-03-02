@@ -198,9 +198,6 @@
 }
 
 @media only screen and (max-width: 420px) {
-  .playview-buttons {
-    margin-left: 1em;
-  }
   .playview-points {
     font-size: 0.7em;
   }

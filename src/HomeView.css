@@ -5,11 +5,16 @@
   color: white;
   line-height: 1em;
   font-size: 2em;
+  overflow: hidden;
 }
 
 .homeview-container {
   display: flex;
   align-items: center;
+}
+
+.play-container {
+  margin-left: 0.8em;
 }
 
 .homeview-image {
@@ -121,6 +126,12 @@
   }
 }
 
+@media only screen and (min-width: 801px) and (max-width: 920px) {
+  .line-break {
+    display: block;
+  }
+}
+
 @media only screen and (max-width: 800px) {
   .homeview-container {
     flex-direction: column-reverse;
@@ -134,5 +145,21 @@
 
   .level-box {
     margin-right: 0px;
+  }
+  .play-container {
+    margin-left: 0;
+    font-size: 0.8em;
+  }
+}
+@media only screen and (max-width: 420px) {
+  .play-container {
+    font-size: 0.7em;
+  }
+  .homeview-image {
+    width: 360px;
+    height: 252px;
+  }
+  .level-box {
+    margin-right: 0;
   }
 }

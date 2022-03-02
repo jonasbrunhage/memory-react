@@ -19,9 +19,11 @@ function HomeView() {
   return (
     <div className="homeview-wrapper">
       <div className="homeview-container">
-        <div>
+        <div className="play-container">
           <h1>Memory</h1>
-          <p>Have fun and exercise your brain</p>
+          <p>
+            Have fun and exercise <span className="line-break">your brain</span>
+          </p>
           <div className="levels">
             <div
               onClick={() => setSquareAmounts(12)}
