@@ -116,32 +116,82 @@ function PlayView() {
 
   const procentMessage = () => {
     var winPercentWithOneDecimal = parseFloat(procent).toFixed(1);
-    if (procent <= 40) {
+    if (procent < 30) {
       return (
         <div className="frame">
+          <p className="playview-procent">{winPercentWithOneDecimal}%</p>
           <p className="playview-quote">
-            Blub blub 🐟, you got {winPercentWithOneDecimal}%
+            You need click on the pictures that are the same
           </p>
-          <p className="playview-small-quote">It can only be better</p>
+          <p className="playview-small-quote">
+            Maybe I should include the rules for this game
+          </p>
         </div>
       );
-    } else if (procent <= 60) {
+    } else if (procent >= 30 && procent < 43) {
       return (
         <div className="frame">
-          <p className="playview-quote">
-            You had over 60%, Good Work! 🐐" {winPercentWithOneDecimal}%
+          <p className="playview-procent">{winPercentWithOneDecimal}%</p>
+          <p className="playview-quote">This is a memory game</p>
+          <p className="playview-small-quote">
+            Not the time for a walk down memory lane
           </p>
-          <p className="playview-small-quote">fffff</p>
+        </div>
+      );
+    } else if (procent > 43 && procent < 50) {
+      return (
+        <div className="frame">
+          <p className="playview-procent">{winPercentWithOneDecimal}%</p>
+          <p className="playview-quote">I dont know if that was bad or good</p>
+          <p className="playview-small-quote">Try again you should</p>
+        </div>
+      );
+    } else if (procent === 50) {
+      return (
+        <div className="frame">
+          <p className="playview-procent">{winPercentWithOneDecimal}%</p>
+          <p className="playview-quote">Like you solved a memory riddle</p>
+          <p className="playview-small-quote">
+            You ended up right in the middle
+          </p>
+        </div>
+      );
+    } else if (procent > 50 && procent < 58) {
+      return (
+        <div className="frame">
+          <p className="playview-procent">{winPercentWithOneDecimal}%</p>
+          <p className="playview-quote">You right more the half the time</p>
+          <p className="playview-small-quote">
+            With this skill in life you could really climb
+          </p>
+        </div>
+      );
+    } else if (procent > 58 && procent < 65) {
+      return (
+        <div className="frame">
+          <p className="playview-procent">{winPercentWithOneDecimal}%</p>
+          <p className="playview-quote">This is some impressive play</p>
+          <p className="playview-small-quote">Things really going your way</p>
+        </div>
+      );
+    } else if (procent > 65 && procent < 76) {
+      return (
+        <div className="frame">
+          <p className="playview-procent">{winPercentWithOneDecimal}%</p>
+          <p className="playview-quote">
+            My mind just exploded like a supernova
+          </p>
+          <p className="playview-small-quote">
+            You are a real life Pokémon Yoda
+          </p>
         </div>
       );
     }
-
     return (
       <div className="frame">
-        <p className="playview-quote">
-          You had over 80%, Good Work! 🐐" {winPercentWithOneDecimal}%
-        </p>
-        <p className="playview-small-quote">fffff</p>
+        <p className="playview-procent">{winPercentWithOneDecimal}%</p>
+        <p className="playview-quote">You are a giant amongst men</p>
+        <p className="playview-small-quote">If not, you clairvoyant then</p>
       </div>
     );
   };

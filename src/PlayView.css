@@ -148,10 +148,17 @@
   transform: rotate(60deg);
 }
 
-.playview-quote {
+.playview-quote,
+.playview-procent {
   font-size: clamp(1.2rem, 3.5vw, 1.9rem);
   font-weight: 500;
   margin: 2px 0px 8px 0px;
+}
+.playview-procent {
+  font-family: "Press Start 2P";
+  letter-spacing: -0.1em;
+  color: rgb(0, 0, 0);
+  text-shadow: 0.1em 0.1em 4px rgb(126, 124, 124);
 }
 
 .ash {
