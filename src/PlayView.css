@@ -119,7 +119,7 @@
   filter: saturate(200%);
 }
 
-.playview-small-quote {
+/* .playview-small-quote {
   font-size: clamp(1.2rem, 3.4vw, 1.7rem);
   margin: 0;
   font-style: italic;
@@ -159,7 +159,7 @@
   letter-spacing: -0.1em;
   color: rgb(0, 0, 0);
   text-shadow: 0.1em 0.1em 4px rgb(126, 124, 124);
-}
+} */
 
 .ash {
   width: 100px;
@@ -207,5 +207,9 @@
 @media only screen and (max-width: 420px) {
   .playview-points {
     font-size: 0.7em;
+  }
+
+  .playview-buttons {
+    padding-left: 2em;
   }
 }
